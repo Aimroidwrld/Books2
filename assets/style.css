@@ -1,0 +1,12 @@
+.suggestions {
+    position: absolute;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}

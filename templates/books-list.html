@@ -1,0 +1,42 @@
+{% include 'header.html' %}
+{% include 'navigation.html' %}
+
+<h1>All Books</h1>
+
+<p>
+  <a class="btn btn-success mb-3" href="add-book.php">Add new book</a>
+</p>
+
+<p>{{ num_rows }} record(s) found.</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th><th>Author</th><th>Genre</th><th>Year</th><th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for b in results %}
+    <tr>
+      <td>{{ b.title }}</td>
+      <td>{{ b.author }}</td>
+      <td>{{ b.genre }}</td>
+      <td>{{ b.pub_year }}</td>
+      <td>
+        <a class="btn btn-sm btn-primary" href="edit-book.php?id={{ b.id }}">Edit</a>
+        <form method="post" action="delete-book.php" style="display:inline;"
+              onsubmit="return confirm('Delete this book?');">
+          <input type="hidden" name="id" value="{{ b.id }}">
+          <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form>
+      </td>
+    </tr>
+  {% else %}
+    <tr>
+      <td colspan="5">No books found.</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% include 'footer.html' %}
